@@ -26,6 +26,12 @@ class Hashes
           smallest_number = n
         end
       end
+      # alternative solution (?)
+      # numbers.find_all { |number|
+      #   if number < smallest_number
+      #     smallest_number = number
+      #   end
+      # }
     smallest_number
   end
 
