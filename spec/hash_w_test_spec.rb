@@ -4,28 +4,16 @@ RSpec.describe Hashes do
 
   let(:hashes) {Hashes.new}
 
-  it "has an hash with Jonathan, Erik, and Anil as keys" do
-    expect(hashes.users.has_key?("Jonathan")).to eq true
-    expect(hashes.users.has_key?("Erik")).to eq true
-    expect(hashes.users.has_key?("Anil")).to eq true
-  end
-
-  it "has an nested hash for all users with :favorite_numbers as key" do
-    expect(hashes.users["Jonathan"].has_key?(:favorite_numbers)).to eq true
-    expect(hashes.users["Erik"].has_key?(:favorite_numbers)).to eq true
-    expect(hashes.users["Anil"].has_key?(:favorite_numbers)).to eq true
-  end
-
   it "returns 7 favorite numbers for Erik" do
     expect(hashes.users["Erik"][:favorite_numbers].length).to eq(7)
   end
 
   it "returns Erik's smallest number" do
-    expect(hashes.get_smallest_number_of_Erik(hashes.users)).to eq(1)
+    expect(hashes.get_smallest_number_of(hashes.users["Erik"][:favorite_numbers])).to eq(1)
   end
 
-  it "returns even numbers from array of favorites of the user passed as argument to the function" do
-    expect(hashes.get_even_favorite_numbers(hashes.users["Anil"][:favorite_numbers])).to eq([12, 14])
+  it "returns Anil's even favorite numbers" do
+    expect(hashes.get_even_favorite_numbers_of(hashes.users["Anil"][:favorite_numbers])).to eq([12, 14])
   end
 
   it "returns an array with all favorite numbers in 'users'" do

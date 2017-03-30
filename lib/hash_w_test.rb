@@ -18,12 +18,12 @@ class Hashes
   end
 
 # How would you return the smallest of Erik's favorite numbers?
-  def get_smallest_number_of_Erik(all_users)
-    numbers = users["Erik"][:favorite_numbers]
-    smallest_number = numbers[0]
-      numbers.each do |n|
-        if n < smallest_number
-          smallest_number = n
+  def get_smallest_number_of(user)
+    users_numbers = user
+    smallest_number = users_numbers[0]
+      users_numbers.each do |number|
+        if number < smallest_number
+          smallest_number = number
         end
       end
       # alternative solution (?)
@@ -36,7 +36,7 @@ class Hashes
   end
 
   # How would you return an array of Anil's favorite numbers that are also even?
-  def get_even_favorite_numbers(user)
+  def get_even_favorite_numbers_of(user)
     user.find_all { |number| number % 2 == 0 }
   end
 
