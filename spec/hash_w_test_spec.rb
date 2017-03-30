@@ -4,16 +4,16 @@ RSpec.describe Hashes do
 
   let(:hashes) {Hashes.new}
 
-  it "returns 7 favorite numbers for Erik" do
-    expect(hashes.users["Erik"][:favorite_numbers].length).to eq(7)
-  end
-
-  it "returns Erik's smallest number" do
+  it "returns the user's smallest number" do
     expect(hashes.get_smallest_number_of(hashes.users["Erik"][:favorite_numbers])).to eq(1)
+    expect(hashes.get_smallest_number_of(hashes.users["Jonathan"][:favorite_numbers])).to eq(12)
+    expect(hashes.get_smallest_number_of(hashes.users["Anil"][:favorite_numbers])).to eq(12)
   end
 
-  it "returns Anil's even favorite numbers" do
+  it "returns even favorite numbers" do
     expect(hashes.get_even_favorite_numbers_of(hashes.users["Anil"][:favorite_numbers])).to eq([12, 14])
+    expect(hashes.get_even_favorite_numbers_of(hashes.users["Jonathan"][:favorite_numbers])).to eq([12, 42])
+    expect(hashes.get_even_favorite_numbers_of(hashes.users["Erik"][:favorite_numbers])).to eq([24, 8, 12, 36])
   end
 
   it "returns an array with all favorite numbers in 'users'" do
