@@ -1,5 +1,6 @@
 class Hashes
 
+# HOW DO I MAKE TESTS PASS IF I CHANGE THIS METHOD INTO A CONSTANT?
   def users
     {
     "Jonathan" => {
@@ -26,7 +27,7 @@ class Hashes
           smallest_number = number
         end
       end
-      # alternative solution (?)
+      # ALTERNATIVE SOLUTION(?)
       # numbers.find_all { |number|
       #   if number < smallest_number
       #     smallest_number = number
@@ -41,8 +42,9 @@ class Hashes
   end
 
   # How would you return an array of the favorite numbers common to all users?
-  def all_numbers_of(all_users)
-    users["Jonathan"][:favorite_numbers] + users["Erik"][:favorite_numbers] + users["Anil"][:favorite_numbers]
+  def get_all_numbers
+    arrays_of_numbers = users.map {|key, value| value[:favorite_numbers] }
+    arrays_of_numbers.inject { |sum, array| sum + array}
   end
 
   def occurences(all_numbers)
