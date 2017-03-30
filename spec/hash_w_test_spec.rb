@@ -24,8 +24,8 @@ RSpec.describe Hashes do
     expect(hashes.get_smallest_number_of_Erik(hashes.users)).to eq(1)
   end
 
-  it "returns Anil's even numbers from his favorite" do
-    expect(hashes.get_anils_even_favorite_numbers(hashes.users)).to eq([12, 14])
+  it "returns even numbers from array of favorites of the user passed as argument to the function" do
+    expect(hashes.get_even_favorite_numbers(hashes.users["Anil"][:favorite_numbers])).to eq([12, 14])
   end
 
   it "returns an array with all favorite numbers in 'users'" do
