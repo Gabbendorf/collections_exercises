@@ -1,22 +1,19 @@
 class Hashes
 
-# HOW DO I MAKE TESTS PASS IF I CHANGE THIS METHOD INTO A CONSTANT?
-  def users
-    {
-    "Jonathan" => {
-      :twitter => "tronathan",
-      :favorite_numbers => [12, 42, 75],
-    },
-    "Erik" => {
-      :twitter => "sferik",
-      :favorite_numbers => [24, 8, 7, 1, 12, 9, 36],
-    },
-    "Anil" => {
-      :twitter => "bridgpal",
-      :favorite_numbers => [12, 14, 85],
-    },
-    }
-  end
+  USERS =  {
+          "Jonathan" => {
+            :twitter => "tronathan",
+            :favorite_numbers => [12, 42, 75],
+          },
+          "Erik" => {
+            :twitter => "sferik",
+            :favorite_numbers => [24, 8, 7, 1, 12, 9, 36],
+          },
+          "Anil" => {
+            :twitter => "bridgpal",
+            :favorite_numbers => [12, 14, 85],
+          },
+          }
 
 # How would you return the smallest of Erik's favorite numbers?
   def get_smallest_number_of(user)
@@ -43,22 +40,21 @@ class Hashes
 
   # How would you return an array of the favorite numbers common to all users?
   def get_all_numbers
-    arrays_of_numbers = users.map {|key, value| value[:favorite_numbers] }
+    arrays_of_numbers = USERS.map {|key, value| value[:favorite_numbers] }
     arrays_of_numbers.inject { |sum, array| sum + array}
   end
 
-  def occurences(all_numbers)
-    occurences = Hash.new(0)
-    all_numbers.each do |number|
-      occurences[number] += 1
+  def occurences
+    get_all_numbers.inject(Hash.new(0)) do |hash, number|
+      hash[number] += 1
+      hash
     end
-    occurences
   end
 
-  def get_common_favorite_numbers_from(hash)
+  def get_common_favorite_numbers
     common_numbers = []
-    hash.each do |number, occurence|
-      if occurence == users.length
+    occurences.each do |number, occurence|
+      if occurence == USERS.length
       common_numbers << number
       end
     end
@@ -66,9 +62,9 @@ class Hashes
   end
 
   # How would you return an array containing all users' favorite numbers, sorted, and excluding duplicates?
-  def sorted_and_unique_favorite(hash)
+  def sorted_and_unique_favorite
     no_duplicates = []
-    hash.each do |key, value|
+    occurences.each do |key, value|
       no_duplicates << key
     end
     no_duplicates.sort
