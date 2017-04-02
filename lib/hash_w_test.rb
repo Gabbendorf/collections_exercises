@@ -63,11 +63,7 @@ class Hashes
 
   # How would you return an array containing all users' favorite numbers, sorted, and excluding duplicates?
   def sorted_and_unique_favorite
-    no_duplicates = []
-    occurences.each do |key, value|
-      no_duplicates << key
-    end
-    no_duplicates.sort
+    occurences.map {|key, value| key}.sort
   end
 
 end
