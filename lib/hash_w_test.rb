@@ -17,20 +17,7 @@ class Hashes
 
 # How would you return the smallest of Erik's favorite numbers?
   def get_smallest_number_of(user)
-    users_numbers = user
-    smallest_number = users_numbers[0]
-      users_numbers.each do |number|
-        if number < smallest_number
-          smallest_number = number
-        end
-      end
-      # ALTERNATIVE SOLUTION(?)
-      # numbers.find_all { |number|
-      #   if number < smallest_number
-      #     smallest_number = number
-      #   end
-      # }
-    smallest_number
+    user.min
   end
 
   # How would you return an array of Anil's favorite numbers that are also even?
@@ -62,7 +49,7 @@ class Hashes
   end
 
   # How would you return an array containing all users' favorite numbers, sorted, and excluding duplicates?
-  def sorted_and_unique_favorite
+  def sorted_and_unique_favorite_numbers
     occurences.map {|key, value| key}.sort
   end
 

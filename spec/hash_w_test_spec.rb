@@ -29,7 +29,7 @@ RSpec.describe Hashes do
   end
 
   it "returns an array containing all users' favorite numbers, sorted and not duplicated" do
-    expect(hashes.sorted_and_unique_favorite).to eq([1, 7, 8, 9, 12, 14, 24, 36, 42, 75, 85])
+    expect(hashes.sorted_and_unique_favorite_numbers).to eq([1, 7, 8, 9, 12, 14, 24, 36, 42, 75, 85])
   end
 
 end
