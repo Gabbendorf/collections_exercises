@@ -3,7 +3,7 @@ class Hashes
   USERS =  {
           "Jonathan" => {
             :twitter => "tronathan",
-            :favorite_numbers => [12, 42, 75],
+            :favorite_numbers => [12, 42, 75, 36],
           },
           "Erik" => {
             :twitter => "sferik",
@@ -11,7 +11,7 @@ class Hashes
           },
           "Anil" => {
             :twitter => "bridgpal",
-            :favorite_numbers => [12, 14, 85],
+            :favorite_numbers => [12, 14, 85, 36],
           },
           }
 
@@ -26,9 +26,9 @@ class Hashes
   end
 
   # How would you return an array of the favorite numbers common to all users?
-  def get_all_numbers
-    arrays_of_numbers = USERS.map {|key, value| value[:favorite_numbers] }
-    arrays_of_numbers.inject { |sum, array| sum + array}
+  def get_common_favorite_numbers
+    pairs = occurences.select {|key, value| value == USERS.length}
+    pairs.keys
   end
 
   def occurences
@@ -38,14 +38,9 @@ class Hashes
     end
   end
 
-  def get_common_favorite_numbers
-    common_numbers = []
-    occurences.each do |number, occurence|
-      if occurence == USERS.length
-      common_numbers << number
-      end
-    end
-    common_numbers
+  def get_all_numbers
+    arrays_of_numbers = USERS.map {|key, value| value[:favorite_numbers] }
+    arrays_of_numbers.inject { |sum, array| sum + array}
   end
 
   # How would you return an array containing all users' favorite numbers, sorted, and excluding duplicates?
