@@ -21,14 +21,17 @@ class Hashes
   end
 
   # How would you return an array of Anil's favorite numbers that are also even?
-  def get_even_favorite_numbers_of(favorite_numbers)
+  def get_even_favorite_numbers_from(favorite_numbers)
     favorite_numbers.find_all { |number| number % 2 == 0 }
   end
 
   # How would you return an array of the favorite numbers common to all users?
   def get_common_favorite_numbers
-    pairs = occurences.select {|key, value| value == USERS.length}
-    pairs.keys
+
+
+
+    # pairs = occurences.select {|key, value| value == USERS.length}
+    # pairs.keys
   end
 
   def occurences
@@ -39,8 +42,7 @@ class Hashes
   end
 
   def get_all_numbers
-    arrays_of_numbers = USERS.map {|key, value| value[:favorite_numbers] }
-    arrays_of_numbers.inject { |sum, array| sum + array}
+    USERS.map {|key, value| value[:favorite_numbers] }.flatten
   end
 
   # How would you return an array containing all users' favorite numbers, sorted, and excluding duplicates?

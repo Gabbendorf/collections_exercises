@@ -11,9 +11,9 @@ RSpec.describe Hashes do
   end
 
   it "returns even favorite numbers" do
-    expect(hashes.get_even_favorite_numbers_of(Hashes::USERS["Anil"][:favorite_numbers])).to eq([12, 14, 36])
-    expect(hashes.get_even_favorite_numbers_of(Hashes::USERS["Jonathan"][:favorite_numbers])).to eq([12, 42, 36])
-    expect(hashes.get_even_favorite_numbers_of(Hashes::USERS["Erik"][:favorite_numbers])).to eq([24, 8, 12, 36])
+    expect(hashes.get_even_favorite_numbers_from(Hashes::USERS["Anil"][:favorite_numbers])).to eq([12, 14, 36])
+    expect(hashes.get_even_favorite_numbers_from(Hashes::USERS["Jonathan"][:favorite_numbers])).to eq([12, 42, 36])
+    expect(hashes.get_even_favorite_numbers_from(Hashes::USERS["Erik"][:favorite_numbers])).to eq([24, 8, 12, 36])
   end
 
   it "returns an array with all favorite numbers of all users'" do
