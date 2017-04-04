@@ -21,8 +21,8 @@ class Hashes
   end
 
   # How would you return an array of Anil's favorite numbers that are also even?
-  def get_even_favorite_numbers_of(user)
-    user.find_all { |number| number % 2 == 0 }
+  def get_even_favorite_numbers_of(favorite_numbers)
+    favorite_numbers.find_all { |number| number % 2 == 0 }
   end
 
   # How would you return an array of the favorite numbers common to all users?
