@@ -1,76 +1,50 @@
 class Hashes
 
-  def users
-    {
-    "Jonathan" => {
-      :twitter => "tronathan",
-      :favorite_numbers => [12, 42, 75],
-    },
-    "Erik" => {
-      :twitter => "sferik",
-      :favorite_numbers => [24, 8, 7, 1, 12, 9, 36],
-    },
-    "Anil" => {
-      :twitter => "bridgpal",
-      :favorite_numbers => [12, 14, 85],
-    },
-    }
-  end
+  USERS =  {
+          "Jonathan" => {
+            :twitter => "tronathan",
+            :favorite_numbers => [12, 42, 75, 36],
+          },
+          "Erik" => {
+            :twitter => "sferik",
+            :favorite_numbers => [24, 8, 7, 1, 12, 9, 36],
+          },
+          "Anil" => {
+            :twitter => "bridgpal",
+            :favorite_numbers => [12, 14, 85, 36],
+          },
+          }
 
 # How would you return the smallest of Erik's favorite numbers?
-  def get_smallest_number_of_Erik(all_users)
-    numbers = users["Erik"][:favorite_numbers]
-    smallest_number = numbers[0]
-      numbers.each do |n|
-        if n < smallest_number
-          smallest_number = n
-        end
-      end
-    smallest_number
+  def get_smallest_number_of(user)
+    user.min
   end
 
   # How would you return an array of Anil's favorite numbers that are also even?
-  def get_anils_even_favorite_numbers(all_users)
-    numbers = users["Anil"][:favorite_numbers]
-    even_numbers = []
-      numbers.each do |n|
-        if n % 2 == 0
-          even_numbers.push(n)
-        end
-      end
-    even_numbers
+  def get_even_favorite_numbers_from(favorite_numbers)
+    favorite_numbers.find_all { |number| number % 2 == 0 }
   end
 
   # How would you return an array of the favorite numbers common to all users?
-  def all_numbers_of(all_users)
-    users["Jonathan"][:favorite_numbers] + users["Erik"][:favorite_numbers] + users["Anil"][:favorite_numbers]
+  def get_common_favorite_numbers
+    all_favorite_numbers = USERS.map {|key, value| value[:favorite_numbers] }
+    all_favorite_numbers.inject { |result, array| result & array }
   end
 
-  def occurences(all_numbers)
-    occurences = Hash.new(0)
-    all_numbers.each do |number|
-      occurences[number] += 1
+  def occurences
+    get_all_numbers.inject(Hash.new(0)) do |hash, number|
+      hash[number] += 1
+      hash
     end
-    occurences
   end
 
-  def get_common_favorite_numbers_from(hash)
-    common_numbers = []
-    hash.each do |number, occurence|
-      if occurence == users.length
-      common_numbers << number
-      end
-    end
-    common_numbers
+  def get_all_numbers
+    USERS.map {|key, value| value[:favorite_numbers] }.flatten
   end
 
   # How would you return an array containing all users' favorite numbers, sorted, and excluding duplicates?
-  def sorted_and_unique_favorite(hash)
-    no_duplicates = []
-    hash.each do |key, value|
-      no_duplicates << key
-    end
-    no_duplicates.sort
+  def sorted_and_unique_favorite_numbers
+    occurences.map {|key, value| key}.sort
   end
 
 end
