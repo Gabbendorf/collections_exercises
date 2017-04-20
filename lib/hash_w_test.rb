@@ -27,8 +27,7 @@ class Hashes
 
   # How would you return an array of the favorite numbers common to all users?
   def get_common_favorite_numbers
-    all_favorite_numbers = USERS.map {|key, value| value[:favorite_numbers] }
-    all_favorite_numbers.inject { |result, array| result & array }
+    USERS.reduce([]) {|result, (k,v)| (result & v[:favorite_numbers]).empty? ? v[:favorite_numbers] : result & v[:favorite_numbers]}
   end
 
   def occurences
